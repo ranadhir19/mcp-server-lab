@@ -1,0 +1,186 @@
+{
+ "v1": {
+  "adversarial": {
+   "rejected": 0,
+   "accepted": 10,
+   "n": 10,
+   "store_mutated_by_bad_calls": true,
+   "rows": [
+    {
+     "call": "create with no body text",
+     "rejected": false
+    },
+    {
+     "call": "create with an extra argument",
+     "rejected": false
+    },
+    {
+     "call": "read a missing id",
+     "rejected": false
+    },
+    {
+     "call": "update a missing id",
+     "rejected": false
+    },
+    {
+     "call": "delete a missing id",
+     "rejected": false
+    },
+    {
+     "call": "search with an empty query",
+     "rejected": false
+    },
+    {
+     "call": "get by title only",
+     "rejected": false
+    },
+    {
+     "call": "create with a numeric title",
+     "rejected": false
+    },
+    {
+     "call": "nonsense action string",
+     "rejected": false
+    },
+    {
+     "call": "no arguments at all",
+     "rejected": false
+    }
+   ]
+  },
+  "bloat": {
+   "total_bytes": 6957,
+   "per_task": {
+    "t01": 161,
+    "t02": 131,
+    "t03": 868,
+    "t04": 1478,
+    "t05": 101,
+    "t06": 115,
+    "t07": 176,
+    "t08": 831,
+    "t09": 141,
+    "t10": 1410,
+    "t11": 131,
+    "t12": 102,
+    "t13": 896,
+    "t14": 185,
+    "t15": 130,
+    "t16": 101
+   }
+  },
+  "confusability": {
+   "mean_max_jaccard": 0.0739,
+   "per_task": {
+    "t01": 0.091,
+    "t02": 0.0,
+    "t03": 0.091,
+    "t04": 0.091,
+    "t05": 0.091,
+    "t06": 0.091,
+    "t07": 0.091,
+    "t08": 0.091,
+    "t09": 0.091,
+    "t10": 0.091,
+    "t11": 0.0,
+    "t12": 0.091,
+    "t13": 0.091,
+    "t14": 0.091,
+    "t15": 0.091,
+    "t16": 0.0
+   }
+  }
+ },
+ "v2": {
+  "adversarial": {
+   "rejected": 10,
+   "accepted": 0,
+   "n": 10,
+   "store_mutated_by_bad_calls": false,
+   "rows": [
+    {
+     "call": "create with no body",
+     "rejected": true
+    },
+    {
+     "call": "create with an extra argument",
+     "rejected": true
+    },
+    {
+     "call": "read a missing id",
+     "rejected": true
+    },
+    {
+     "call": "update a missing id",
+     "rejected": true
+    },
+    {
+     "call": "delete a missing id",
+     "rejected": true
+    },
+    {
+     "call": "search with no query",
+     "rejected": true
+    },
+    {
+     "call": "get by title instead of id",
+     "rejected": true
+    },
+    {
+     "call": "create with a numeric title",
+     "rejected": true
+    },
+    {
+     "call": "update with no id",
+     "rejected": true
+    },
+    {
+     "call": "delete with no arguments",
+     "rejected": true
+    }
+   ]
+  },
+  "bloat": {
+   "total_bytes": 1269,
+   "per_task": {
+    "t01": 38,
+    "t02": 109,
+    "t03": 43,
+    "t04": 270,
+    "t05": 38,
+    "t06": 17,
+    "t07": 39,
+    "t08": 33,
+    "t09": 40,
+    "t10": 278,
+    "t11": 109,
+    "t12": 41,
+    "t13": 82,
+    "t14": 36,
+    "t15": 17,
+    "t16": 79
+   }
+  },
+  "confusability": {
+   "mean_max_jaccard": 0.2886,
+   "per_task": {
+    "t01": 0.263,
+    "t02": 0.316,
+    "t03": 0.316,
+    "t04": 0.29,
+    "t05": 0.242,
+    "t06": 0.312,
+    "t07": 0.263,
+    "t08": 0.316,
+    "t09": 0.242,
+    "t10": 0.29,
+    "t11": 0.316,
+    "t12": 0.242,
+    "t13": 0.316,
+    "t14": 0.263,
+    "t15": 0.312,
+    "t16": 0.316
+   }
+  }
+ }
+}
