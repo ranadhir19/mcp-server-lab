@@ -29,6 +29,57 @@ grades what happens when models try to use each one.
   (labelled a proxy — it measures shared words, not shared meaning).
 - `validate.py` — the test harness. Pure stdlib; run it first.
 
+## Installation
+
+The server has no dependencies beyond Python itself — the server,
+the client and the harness are pure standard library (JSON-RPC 2.0
+over stdio). Tested with Python 3.12.
+
+```bash
+git clone https://github.com/ranadhir19/mcp-server-lab.git
+cd mcp-server-lab
+python3 validate.py   # self-check: must end with OVERALL: PASS (5/5 stages)
+```
+
+That is the whole install: nothing to build, no package to install.
+(In fact the only command in this lab that needs a third-party
+package is the optional model-trial runner — see "Run it".)
+
+## MCP configuration
+
+An MCP client launches the server over stdio. Point the client at
+`notes_server.py` with `--schema v2` to get the strict design: six
+tools (`create_note`, `get_note`, `update_note`, `delete_note`,
+`list_notes`, `search_notes`), required fields enforced,
+`additionalProperties: false`, and structured errors instead of
+silent failures. For any client that takes the standard
+`mcpServers` JSON (Claude Desktop, Claude Code, Cursor and others):
+
+```json
+{
+  "mcpServers": {
+    "notes-strict": {
+      "command": "python3",
+      "args": ["/absolute/path/to/mcp-server-lab/notes_server.py", "--schema", "v2"]
+    }
+  }
+}
+```
+
+Replace `/absolute/path/to/mcp-server-lab` with the directory you
+cloned into. With Claude Code, the same registration is one command:
+
+```bash
+claude mcp add notes-strict -- python3 /absolute/path/to/mcp-server-lab/notes_server.py --schema v2
+```
+
+Then ask the model to list, create, search, update or delete notes.
+Two things to know: the store starts from the same six seeded notes
+(n1–n6) on every launch, and state is in memory only — it resets
+when the server restarts, which is deliberate for a teaching lab.
+(`--schema v1` swaps in the deliberately loose design, so you can
+watch the same client's calls fail against it.)
+
 ## Run it
 
 ```bash
@@ -69,7 +120,7 @@ can often guess its way past a bad description; a small one cannot.
 ## What the deterministic audits already show
 
 Run `audit.py` yourself: the loose v1 schema silently accepts all 10
-adversarial calls (and two of them mutate the store); the strict v2
+adversarial calls (and three of them mutate the store); the strict v2
 schema rejects all 10. Across the 16 ground-truth task calls, v1
 returns roughly 5.5 times as many result bytes as v2. The lexical
 confusability proxy, interestingly, scores v2 *worse* — its longer
