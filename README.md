@@ -9,6 +9,9 @@ a *user interface for a language model*, and this lab measures what
 that means: it exposes one notes store through two schema designs and
 grades what happens when models try to use each one.
 
+**Listed in the [HOL Registry](https://hol.org/plugins)** — owner-verified
+listing (catalogue PR merged 2026-11-04).
+
 - `notes_server.py` — a real MCP server in pure Python stdlib
   (JSON-RPC 2.0 over stdio: `initialize`, `tools/list`, `tools/call`).
   `--schema v1` is deliberately ambiguous: three vague tools, a
